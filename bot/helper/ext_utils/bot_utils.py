@@ -117,7 +117,7 @@ def get_progress_bar_string(status):
     p_str = "█" * cFull
     if cPart >= 0:
         p_str += PROGRESS_INCOMPLETE[cPart]
-    p_str += "□" * (PROGRESS_MAX_SIZE - cFull)
+    p_str += " " * (PROGRESS_MAX_SIZE - cFull)
     p_str = f"[{p_str}]"
     return p_str
 
@@ -136,11 +136,11 @@ def get_readable_message():
                 else:
                     msg += f"\n<b>Uploaded:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 msg += f"\n<b>⚡Speed:</b> {download.speed()}" \
-                        f", <b>ETA:</b> {download.eta()} "
+                        f", <b>⏳ETA:</b> {download.eta()} "
                 # if hasattr(download, 'is_torrent'):
                 try:
-                    msg += f"\n<b>Seeders:</b> {download.aria_download().num_seeders}" \
-                        f" | <b>Peers:</b> {download.aria_download().connections}"
+                    msg += f"\n<b>🌺Seeders:</b> {download.aria_download().num_seeders}" \
+                        f" | <b>💐Peers:</b> {download.aria_download().connections}"
                 except:
                     pass
                     try:
@@ -148,7 +148,7 @@ def get_readable_message():
                             f" | <b>💐Leechers:</b> {download.torrent_info().num_leechs}"
                     except:
                         pass
-                msg += f'\n<b>User:</b> {download.message.from_user.first_name} ➡️<code>{download.message.from_user.id}</code>'
+                msg += f'\n<b>👤User:</b> {download.message.from_user.first_name} ➡️<code>{download.message.from_user.id}</code>'
                 msg += f"\n<b>To Stop🚫:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             msg += "\n\n"
         return msg    
